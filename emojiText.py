@@ -26,18 +26,22 @@ def findCodeByIndex(index):
                 return line
 
 def mainLoop():
-    plt.figure()
-    fig = plt.gcf()
-    fig.set_size_inches(60,60)
+
+    #fig = plt.gcf()
     im = Image.open("./emojione.sprites.png")
     while True:
-        plt.imshow(im)
+        fig = plt.imshow(im)
+        figManager = plt.get_current_fig_manager()
+        figManager.resize(800,800)
+        #figManager.window.showMaximized()
+        plt.tight_layout()
         pos = plt.ginput(1)
         startaxis = findStartAxis(*pos[0])
         emojiIndex = findIndexByStartAxis(*startaxis)
         emojiCode = findCodeByIndex(emojiIndex)
         #print(pos, startaxis, emojiIndex, emojiCode)
         print(emojiCode)
+        plt.close()
 
 if __name__ == '__main__':
     mainLoop()
