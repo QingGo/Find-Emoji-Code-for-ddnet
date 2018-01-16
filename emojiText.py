@@ -24,9 +24,9 @@ def findCodeByIndex(index):
             count += 1
             if line.startswith(index):
                 target = count+2
-                result.append(lastLine)
+                result.append(lastLine.strip())
             if count == target:
-                result.append(line)
+                result.append(line.strip())
                 return result
             lastLine = line
 
@@ -44,7 +44,7 @@ def mainLoop():
             emojiIndex = findIndexByStartAxis(*startaxis)
             emojiCode = findCodeByIndex(emojiIndex)
             #print(pos, startaxis, emojiIndex, emojiCode)
-            print(":".join(emojiCode))
+            print(" -> ".join(emojiCode))
             plt.close()
         except Exception as e:
             print(e, pos)
