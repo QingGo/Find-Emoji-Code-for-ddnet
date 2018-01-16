@@ -18,12 +18,17 @@ def findCodeByIndex(index):
     with open("./index.txt", "r") as f:
         count = 0
         target = float('inf')
+        lastLine = None
+        result = []
         for line in f.readlines():
             count += 1
             if line.startswith(index):
                 target = count+2
+                result.append(lastLine)
             if count == target:
-                return line
+                result.append(line)
+                return result
+            lastLine = line
 
 def mainLoop():
     im = Image.open("./emojione.sprites.png")
@@ -39,7 +44,7 @@ def mainLoop():
             emojiIndex = findIndexByStartAxis(*startaxis)
             emojiCode = findCodeByIndex(emojiIndex)
             #print(pos, startaxis, emojiIndex, emojiCode)
-            print(emojiCode)
+            print(":".join(emojiCode))
             plt.close()
         except Exception as e:
             print(e, pos)
